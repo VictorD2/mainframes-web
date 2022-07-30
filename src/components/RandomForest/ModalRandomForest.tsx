@@ -8,27 +8,13 @@ import { API_URL } from '../../config/config'
 import useRandomForest from '../../hooks/useRandomForest'
 
 const ModalRandomForest = () => {
-  const { setList2, list2, setLoadingForm, loadingForm } = useRandomForest()
+  const { setList2, list2, setOpen, setLoadingForm, loadingForm } = useRandomForest()
 
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
-      formValue.anosmia_hiposmia = parseInt(formValue.anosmia_hiposmia + '')
-      formValue.cefalea = parseInt(formValue.cefalea + '')
-      formValue.congestion_nasal = parseInt(formValue.congestion_nasal + '')
-      formValue.diarrea = parseInt(formValue.diarrea + '')
-      formValue.dificultad_respiratoria = parseInt(formValue.dificultad_respiratoria + '')
-      formValue.dolor_abdominal = parseInt(formValue.dolor_abdominal + '')
-      formValue.dolor_articulaciones = parseInt(formValue.dolor_articulaciones + '')
-      formValue.dolor_garganta = parseInt(formValue.dolor_garganta + '')
-      formValue.dolor_muscular = parseInt(formValue.dolor_muscular + '')
-      formValue.dolor_pecho = parseInt(formValue.dolor_pecho + '')
-      formValue.fiebre = parseInt(formValue.fiebre + '')
-      formValue.nauseas = parseInt(formValue.nauseas + '')
-      formValue.otros_sintomas = parseInt(formValue.otros_sintomas + '')
-      formValue.tos = parseInt(formValue.tos + '')
       const res = await axios.post(`${API_URL}/random-forest/predict`, formValue)
       if (res.data.pred === undefined) return
       const newData = {
@@ -50,6 +36,7 @@ const ModalRandomForest = () => {
       }
       console.log(newData)
       setList2([...list2, newData])
+      setOpen(false)
     },
   })
 
@@ -211,20 +198,20 @@ const ModalRandomForest = () => {
 }
 function initialValues() {
   return {
-    anosmia_hiposmia: 0,
-    cefalea: 0,
-    congestion_nasal: 0,
-    diarrea: 0,
-    dificultad_respiratoria: 0,
-    dolor_abdominal: 0,
-    dolor_articulaciones: 0,
-    dolor_garganta: 0,
-    dolor_muscular: 0,
-    dolor_pecho: 0,
-    fiebre: 0,
-    nauseas: 0,
-    otros_sintomas: 0,
-    tos: 0,
+    anosmia_hiposmia: '',
+    cefalea: '',
+    congestion_nasal: '',
+    diarrea: '',
+    dificultad_respiratoria: '',
+    dolor_abdominal: '',
+    dolor_articulaciones: '',
+    dolor_garganta: '',
+    dolor_muscular: '',
+    dolor_pecho: '',
+    fiebre: '',
+    nauseas: '',
+    otros_sintomas: '',
+    tos: '',
   }
 }
 

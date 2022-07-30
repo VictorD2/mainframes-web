@@ -8,18 +8,13 @@ import { API_URL } from '../../config/config'
 import axios from 'axios'
 
 const ModalRegresion = () => {
-  const { setLoadingForm, setList2, list2, loadingForm } = useRegresion()
+  const { setLoadingForm, setOpen, setList2, list2, loadingForm } = useRegresion()
 
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
-      formValue.cpi = parseInt(formValue.cpi + '')
-      formValue.fuel_price = parseInt(formValue.fuel_price + '')
-      formValue.holiday_flag = parseInt(formValue.holiday_flag + '')
-      formValue.temperature = parseInt(formValue.temperature + '')
-      formValue.unemployment = parseInt(formValue.unemployment + '')
       const res = await axios.post(`${API_URL}/multiple-regression/predict`, formValue)
       console.log(res)
       const newData = {
@@ -31,6 +26,7 @@ const ModalRegresion = () => {
         pred: res.data.pred,
       }
       setList2([...list2, newData])
+      setOpen(false)
     },
   })
 
@@ -97,11 +93,11 @@ const ModalRegresion = () => {
 }
 function initialValues() {
   return {
-    holiday_flag: 0,
-    temperature: 0,
-    fuel_price: 0,
-    cpi: 0,
-    unemployment: 0,
+    holiday_flag: '',
+    temperature: '',
+    fuel_price: '',
+    cpi: '',
+    unemployment: '',
   }
 }
 

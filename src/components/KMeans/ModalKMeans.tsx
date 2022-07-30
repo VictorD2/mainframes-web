@@ -8,7 +8,7 @@ import { AppButton } from '../../shared/app_button'
 import { API_URL } from '../../config/config'
 
 const ModalKMeans = () => {
-  const { kmeans, setKmeans, setList2, list2, setLoadingForm, loadingForm } = useKMeans()
+  const { kmeans, setOpen, setKmeans, setList2, list2, setLoadingForm, loadingForm } = useKMeans()
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -16,8 +16,6 @@ const ModalKMeans = () => {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       console.log(formValue)
-      formValue.age = parseInt(formValue.age + '')
-      formValue.spending_score = parseInt(formValue.spending_score + '')
       const res = await axios.post(`${API_URL}/k-means/predict`, formValue)
       console.log(res.data.pred)
       const newData = {
@@ -26,6 +24,7 @@ const ModalKMeans = () => {
         class: res.data.pred,
       }
       setList2([...list2, newData])
+      setOpen(false)
     },
   })
 
@@ -65,8 +64,8 @@ const ModalKMeans = () => {
 }
 function initialValues() {
   return {
-    age: 0,
-    spending_score: 0,
+    age: '',
+    spending_score: '',
   }
 }
 
