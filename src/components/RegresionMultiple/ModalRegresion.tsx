@@ -27,6 +27,7 @@ const ModalRegresion = () => {
       }
       setList2([...list2, newData])
       setOpen(false)
+      formik.resetForm()
     },
   })
 
