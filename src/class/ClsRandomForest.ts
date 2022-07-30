@@ -17,6 +17,7 @@ class ClsRandomForest {
         console.log(res)
         this.datos = res.data.df.filas
         this.cm = res.data.cm
+        return
       }
     } catch (error) {}
   }

@@ -14,6 +14,7 @@ class ClsRegresion {
         }
         console.log(res)
         this.datos = res.data.df.filas
+        return
       }
     } catch (error) {}
   }
