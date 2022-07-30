@@ -8,16 +8,26 @@ class ClsKMeans {
   async predecir() {}
   async getData() {
     try {
-      const res = await axios.get(`${API_URL}/k-means`)
-      console.log(res)
-      this.datos = res.data.df.filas
+      while (true) {
+        const res = await axios.get(`${API_URL}/k-means`)
+        if (res.data.error) {
+          continue
+        }
+        console.log(res)
+        this.datos = res.data.df.filas
+      }
     } catch (error) {}
   }
   async getGraficos() {
     try {
-      const res = await axios.get(`${API_URL}/graphs-k-means`)
-      console.log(res)
-      return res.data
+      while (true) {
+        const res = await axios.get(`${API_URL}/graphs-k-means`)
+        if (res.data.error) {
+          continue
+        }
+        console.log(res)
+        return res.data
+      }
     } catch (error) {}
   }
 }

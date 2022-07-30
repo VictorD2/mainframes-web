@@ -15,29 +15,32 @@ const ModalRandomForest = () => {
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
-      const res = await axios.post(`${API_URL}/random-forest/predict`, formValue)
-      if (res.data.pred === undefined) return
-      const newData = {
-        anosmia_hiposmia: formValue.anosmia_hiposmia + '',
-        cefalea: formValue.cefalea + '',
-        congestion_nasal: formValue.congestion_nasal + '',
-        diarrea: formValue.diarrea + '',
-        dificultad_respiratoria: formValue.dificultad_respiratoria + '',
-        dolor_abdominal: formValue.dolor_abdominal + '',
-        dolor_articulaciones: formValue.dolor_articulaciones + '',
-        dolor_garganta: formValue.dolor_garganta + '',
-        dolor_muscular: formValue.dolor_muscular + '',
-        dolor_pecho: formValue.dolor_pecho + '',
-        fiebre: formValue.fiebre + '',
-        nauseas: formValue.nauseas + '',
-        otros_sintomas: formValue.otros_sintomas + '',
-        tos: formValue.tos + '',
-        Pred_Flag_sospechoso: res.data.pred,
+      while (true) {
+        const res = await axios.post(`${API_URL}/random-forest/predict`, formValue)
+        if (res.data.error) continue
+        const newData = {
+          anosmia_hiposmia: formValue.anosmia_hiposmia + '',
+          cefalea: formValue.cefalea + '',
+          congestion_nasal: formValue.congestion_nasal + '',
+          diarrea: formValue.diarrea + '',
+          dificultad_respiratoria: formValue.dificultad_respiratoria + '',
+          dolor_abdominal: formValue.dolor_abdominal + '',
+          dolor_articulaciones: formValue.dolor_articulaciones + '',
+          dolor_garganta: formValue.dolor_garganta + '',
+          dolor_muscular: formValue.dolor_muscular + '',
+          dolor_pecho: formValue.dolor_pecho + '',
+          fiebre: formValue.fiebre + '',
+          nauseas: formValue.nauseas + '',
+          otros_sintomas: formValue.otros_sintomas + '',
+          tos: formValue.tos + '',
+          Pred_Flag_sospechoso: res.data.pred,
+        }
+        console.log(newData)
+        setList2([...list2, newData])
+        setOpen(false)
+        formik.resetForm()
+        return
       }
-      console.log(newData)
-      setList2([...list2, newData])
-      setOpen(false)
-      formik.resetForm()
     },
   })
 

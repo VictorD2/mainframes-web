@@ -15,19 +15,25 @@ const ModalRegresion = () => {
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
-      const res = await axios.post(`${API_URL}/multiple-regression/predict`, formValue)
-      console.log(res)
-      const newData = {
-        cpi: formValue.cpi,
-        fuel_price: formValue.fuel_price,
-        holiday_flag: formValue.holiday_flag,
-        temperature: formValue.temperature,
-        unemployment: formValue.unemployment,
-        pred: res.data.pred,
+      while (true) {
+        const res = await axios.post(`${API_URL}/multiple-regression/predict`, formValue)
+        console.log(res)
+        if (res.data.error) {
+          continue
+        }
+        const newData = {
+          cpi: formValue.cpi,
+          fuel_price: formValue.fuel_price,
+          holiday_flag: formValue.holiday_flag,
+          temperature: formValue.temperature,
+          unemployment: formValue.unemployment,
+          pred: res.data.pred,
+        }
+        setList2([...list2, newData])
+        setOpen(false)
+        formik.resetForm()
+        return
       }
-      setList2([...list2, newData])
-      setOpen(false)
-      formik.resetForm()
     },
   })
 

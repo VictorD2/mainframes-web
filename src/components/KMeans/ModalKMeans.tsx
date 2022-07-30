@@ -15,17 +15,23 @@ const ModalKMeans = () => {
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
     onSubmit: async (formValue) => {
-      console.log(formValue)
-      const res = await axios.post(`${API_URL}/k-means/predict`, formValue)
-      console.log(res.data.pred)
-      const newData = {
-        age: formValue.age,
-        spending_score: formValue.spending_score,
-        class: res.data.pred,
+      while (true) {
+        console.log(formValue)
+        const res = await axios.post(`${API_URL}/k-means/predict`, formValue)
+        if (res.data.error) {
+          continue
+        }
+        console.log(res.data.pred)
+        const newData = {
+          age: formValue.age,
+          spending_score: formValue.spending_score,
+          class: res.data.pred,
+        }
+        setList2([...list2, newData])
+        setOpen(false)
+        formik.resetForm()
+        return
       }
-      setList2([...list2, newData])
-      setOpen(false)
-      formik.resetForm()
     },
   })
 
