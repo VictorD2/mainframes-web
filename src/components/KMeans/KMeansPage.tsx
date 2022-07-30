@@ -54,10 +54,10 @@ const KMeansPage = () => {
       </section>
       <section className="w-full mt-20 flex flex-row flex-wrap gap-5 items-center justify-around gap-y-32">
         <div className="w-5/12">
-          <Grafico1 title={'Prom Edades'} etiquetas={labels1} datos={values1}></Grafico1>
+          <Grafico1 titleChart="Edades vs Spending Score" title={'Prom Spending Score'} titleX="Edades" titleY="Spending Score Prom" etiquetas={labels1} datos={values1}></Grafico1>
         </div>
         <div className="w-5/12">
-          <Grafico2 title={'Prom Generos'} etiquetas={labels2} datos={values2}></Grafico2>
+          <Grafico2 titleChart="Sexo vs Spending Score" title={'Prom Generos'} etiquetas={labels2} datos={values2}></Grafico2>
         </div>
       </section>
       <div>

@@ -61,11 +61,11 @@ const RegresionMultiple = () => {
         </div>
       </section>
       <section className="w-full flex flex-row flex-wrap gap-5 items-center justify-around gap-y-32">
-        <div className="w-full">
-          <Grafico3 etiquetas={graficos1.labels} datos={graficos1.values} title="Datos"></Grafico3>
+        <div className="w-11/12">
+          <Grafico3 titleY="Weekly_Sales" titleX="Dias" titleChart="Ventas promedio por dia" etiquetas={graficos1.labels} datos={graficos1.values} title="Sales Prom"></Grafico3>
         </div>
-        <div className="w-full">
-          <Grafico1 etiquetas={graficos2.labels} datos={graficos2.values} title="Datos"></Grafico1>
+        <div className="w-11/12">
+          <Grafico1 titleY="Weekly_Sales" titleX="Stores" titleChart="Venta total por tienda" etiquetas={graficos2.labels} datos={graficos2.values} title="Total Sales"></Grafico1>
         </div>
       </section>
       <div>

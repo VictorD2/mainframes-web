@@ -7,8 +7,9 @@ type Props = {
   datos: any[]
   etiquetas: any[]
   title: string
+  titleChart?: string
 }
-const Grafico2 = ({ datos, etiquetas, title }: Props) => {
+const Grafico2 = ({ datos, titleChart, etiquetas, title }: Props) => {
   ChartJS.register(LinearScale, ArcElement, PieController, BarController, LineController, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip)
   const labels = etiquetas
   const data = {
@@ -32,7 +33,8 @@ const Grafico2 = ({ datos, etiquetas, title }: Props) => {
     ],
   }
   return (
-    <div className="w-full h-full items-center flex justify-center bg-gray-700">
+    <div className="w-full flex-col h-full items-center flex justify-center bg-gray-700">
+      <h2>{titleChart}</h2>
       <Pie
         options={{
           plugins: {

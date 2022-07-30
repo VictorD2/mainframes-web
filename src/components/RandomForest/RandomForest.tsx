@@ -126,8 +126,8 @@ const RandomForest = () => {
         </div>
       </section>
       <section className="w-full flex flex-row flex-wrap gap-5 items-center justify-around gap-y-32 mt-20">
-        <div className="w-5/12">
-          <Grafico1 title="Datos" etiquetas={labels2} datos={values2}></Grafico1>
+        <div className="w-11/12">
+          <Grafico1 titleX="Sintomas" titleY="Nro Casos" titleChart="Frecuencia de sintomas de personas sospechosas de covid" title="Frecuencia" etiquetas={labels2} datos={values2}></Grafico1>
         </div>
       </section>
       <div>

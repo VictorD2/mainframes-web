@@ -7,8 +7,11 @@ type Props = {
   datos: any[]
   etiquetas: any[]
   title: string
+  titleX?: string
+  titleY?: string
+  titleChart?: string
 }
-const Grafico3 = ({ datos, etiquetas, title }: Props) => {
+const Grafico3 = ({ datos, etiquetas, title, titleY, titleX, titleChart }: Props) => {
   ChartJS.register(LinearScale, BarController, LineController, CategoryScale, BarElement, PointElement, LineElement, Legend, Tooltip)
   const labels = etiquetas
   const data = {
@@ -32,10 +35,15 @@ const Grafico3 = ({ datos, etiquetas, title }: Props) => {
     ],
   }
   return (
-    <div className="w-full h-full items-center flex justify-center bg-gray-700">
+    <div className="w-full flex-col h-full items-center flex justify-center bg-gray-700">
+      <h2>{titleChart}</h2>
       <Line
         options={{
           plugins: {
+            title: {
+              display: true,
+              text: titleChart,
+            },
             legend: {
               labels: {
                 color: '#fff',
@@ -50,11 +58,21 @@ const Grafico3 = ({ datos, etiquetas, title }: Props) => {
           },
           scales: {
             y: {
+              title: {
+                display: true,
+                text: titleY,
+                color: '#fff',
+              },
               ticks: {
                 color: '#fff',
               },
             },
             x: {
+              title: {
+                display: true,
+                text: titleX,
+                color: '#fff',
+              },
               ticks: {
                 color: '#fff',
               },
