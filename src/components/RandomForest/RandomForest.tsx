@@ -48,7 +48,7 @@ const RandomForest = () => {
     'tos',
     'Pred_Flag_sospechoso',
   ]
-  const columns3 = ['#', '@']
+  const columns3 = ['0', '1']
   const rows = list.map((item: any, i) => (
     <tr key={i + 15000}>
       <td className="border-2 bg-gray-800 px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{i + 1}</td>
@@ -95,6 +95,7 @@ const RandomForest = () => {
   ))
   const rows3 = list3.map((item: any, i) => (
     <tr key={i}>
+      <td className="border-2 bg-gray-800 px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{i}</td>
       <td className="border-2 bg-gray-800 px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{item[0]}</td>
       <td className="border-2 bg-gray-800 px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{item[1]}</td>
     </tr>
